@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useReducer } from 'react';
+import { v4 as uuid } from 'uuid';
 import './App.css';
+import AddItem from './components/AddItem';
+import List from './components/List';
+import { listReducer } from './utils/reducers';
+
+const initialState = {
+  items: [
+    { id: uuid(), name: 'Finish TODO list' },
+    { id: uuid(), name: 'Make portfolio' }
+  ]
+}
 
 function App() {
+  const [state, dispatch] = useReducer(listReducer, initialState);
+  const { items } = state;
+  console.log(state)
+  console.log(dispatch);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app-container'>
+      <h1>Todo List:</h1>
+      <div className='input-container'>
+        <AddItem dispatch={dispatch} />
+      </div>
+      <div className='list-container'>
+        <List items={items} dispatch={dispatch} />
+      </div>
     </div>
   );
 }
