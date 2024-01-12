@@ -1,2 +1,4 @@
 # A TODO list in React
-This uses the built-in react hook useReducer to manage state rather than Redux, since the state is so minimal.
+This implements state management by two methods:
+1) In the main branch, state is handled with useReducer
+2) In the redux-branch, state is handled with Redux
