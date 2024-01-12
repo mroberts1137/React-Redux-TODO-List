@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItem } from './todoSlice';
 
-const AddItem = ({ dispatch }) => {
+const AddItem = () => {
   const [input, setInput] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -9,7 +12,7 @@ const AddItem = ({ dispatch }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch({ type: 'ADD_ITEM', payload: input});
+    dispatch(addItem(input));
     setInput('');
   };
 
